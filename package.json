@@ -1,0 +1,22 @@
+{
+  "author": "Jeremy Ruppel",
+  "name": "frosting",
+  "description": "Task helpers for Cakefiles",
+  "version": "0.0.1",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~v0.4.1"
+  },
+  "main": "./lib/frosting",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha":"0.14.1",
+    "should":"0.6.0",
+    "sinon":"*"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}

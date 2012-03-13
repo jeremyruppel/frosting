@@ -4,7 +4,7 @@
   "description": "Task helpers for Cakefiles",
   "version": "0.0.1",
   "repository": {
-    "url": ""
+    "url": "https://github.com/jeremyruppel/frosting"
   },
   "engines": {
     "node": "~v0.4.1"

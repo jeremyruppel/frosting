@@ -20,4 +20,4 @@ exports.each = ( pattern, callback, done ) ->
 
     callback file for file in files
 
-    done( )
+    done?( )

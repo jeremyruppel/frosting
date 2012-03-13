@@ -10,7 +10,9 @@
     "node": "~v0.4.1"
   },
   "main": "./lib/frosting",
-  "dependencies": {},
+  "dependencies": {
+    "glob":"3.1.6"
+  },
   "devDependencies": {
     "mocha":"0.14.1",
     "should":"0.6.0",

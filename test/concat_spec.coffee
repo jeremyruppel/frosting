@@ -19,7 +19,6 @@ describe 'concat', ->
       bar
       baz
       foo
-
       """
       done( )
 
@@ -34,6 +33,5 @@ describe 'concat', ->
       foo
       bar
       baz
-
       """
       done( )

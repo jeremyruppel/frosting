@@ -38,9 +38,8 @@ exports.concat = ( files, callback ) ->
 
   file = new File( )
   each files, ( f ) ->
-    file.buffer += f.read( ) + "\n"
-  , ->
-    callback file
+    file.append f.read( )
+  , -> callback file
 
 ###*
  *
@@ -69,9 +68,11 @@ class File
 
   basename : -> path.basename @path, @extname( )
 
-  append : ( string ) -> @buffer = "#{@buffer}\n#{string}"
+  append : ( string ) ->
+    @buffer = if @buffer.length is 0 then string else "#{@buffer}\n#{string}"
 
-  prepend : ( string ) -> @buffer = "#{string}\n#{@buffer}"
+  prepend : ( string ) ->
+    @buffer = if @buffer.length is 0 then string else "#{string}\n#{@buffer}"
 
   read : -> @buffer = fs.readFileSync @path, 'utf-8'
 

@@ -1,6 +1,7 @@
-fs     = require 'fs'
-glob   = require 'glob'
-coffee = require 'coffee-script'
+fs               = require 'fs'
+glob             = require 'glob'
+coffee           = require 'coffee-script'
+{uglify, parser} = require 'uglify-js'
 
 ###*
  * Shorter console.log
@@ -49,7 +50,20 @@ class File
 
   compile : ( callback ) ->
     @read( ) if @buffer is ''
+
     @buffer = coffee.compile @buffer
+
+    callback( )
+
+  minify : ( callback ) ->
+    @read( ) if @buffer is ''
+
+    ast = parser.parse @buffer
+    ast = uglify.ast_mangle ast
+    ast = uglify.ast_squeeze ast
+
+    @buffer = uglify.gen_code ast
+
     callback( )
 
 exports.File = File

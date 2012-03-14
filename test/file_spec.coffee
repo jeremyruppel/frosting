@@ -74,3 +74,35 @@ describe 'File', ->
 
         """
         done( )
+
+  describe 'minify', ->
+
+    it 'should call read if the buffer is empty', ( done ) ->
+      file = new File __filename
+      sinon.stub( file, 'read' ).returns 'var foo = "bar";'
+
+      file.buffer.should.equal ''
+      file.read.called.should.be.false
+
+      file.minify ->
+        file.read.called.should.be.true
+        done( )
+
+    it 'should not call read if the buffer is not empty', ( done ) ->
+      file = new File __filename
+      sinon.stub( file, 'read' ).returns 'var foo = "bar";'
+
+      file.buffer = 'foo'
+      file.read.called.should.be.false
+
+      file.minify ->
+        file.read.called.should.be.false
+        done( )
+
+    it 'should pass the contents of the buffer through the uglifyjs minifier', ( done ) ->
+      file = new File __filename
+      file.buffer = 'var foo = "bar";'
+
+      file.minify ->
+        file.buffer.should.eql 'var foo="bar"'
+        done( )

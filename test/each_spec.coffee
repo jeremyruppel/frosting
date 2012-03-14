@@ -34,3 +34,17 @@ describe 'each', ->
       spy.getCall( 2 ).args[ 0 ].path.should.equal "#{__dirname}/support/foo.txt"
 
       done( )
+
+  it 'should iterate over an array of files if provided one', ( done ) ->
+    spy = sinon.spy( )
+
+    each [ 'foo.txt', 'bar.txt', 'baz.txt' ], spy, ->
+
+      spy.getCall( 0 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 0 ).args[ 0 ].path.should.equal "foo.txt"
+      spy.getCall( 1 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 1 ).args[ 0 ].path.should.equal "bar.txt"
+      spy.getCall( 2 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 2 ).args[ 0 ].path.should.equal "baz.txt"
+
+      done( )

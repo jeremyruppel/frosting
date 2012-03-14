@@ -16,14 +16,17 @@ exports.glob = glob
 
 ###*
  * Sugar method to call a block for each
- * filename matched in a glob
+ * filename matched in a glob, or for each
+ * filename in an array of filenames
 ###
-exports.each = ( pattern, callback, done ) ->
+exports.each = ( files, callback, done ) ->
 
-  glob pattern, { }, ( error, files ) ->
-
+  if typeof files is 'string'
+    glob files, { }, ( error, files ) ->
+      callback new File( file ) for file in files
+      done?( )
+  else
     callback new File( file ) for file in files
-
     done?( )
 
 ###*

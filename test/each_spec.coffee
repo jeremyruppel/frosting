@@ -21,13 +21,16 @@ describe 'each', ->
 
       done( )
 
-  it 'should pass each filename to the callback', ( done ) ->
+  it 'should pass a File object to each callback', ( done ) ->
     spy = sinon.spy( )
 
     each "#{__dirname}/support/*.txt", spy, ->
 
-      spy.firstCall.args[ 0 ].should.equal  "#{__dirname}/support/bar.txt"
-      spy.secondCall.args[ 0 ].should.equal "#{__dirname}/support/baz.txt"
-      spy.thirdCall.args[ 0 ].should.equal  "#{__dirname}/support/foo.txt"
+      spy.getCall( 0 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 0 ).args[ 0 ].path.should.equal "#{__dirname}/support/bar.txt"
+      spy.getCall( 1 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 1 ).args[ 0 ].path.should.equal "#{__dirname}/support/baz.txt"
+      spy.getCall( 2 ).args[ 0 ].should.be.a 'object'
+      spy.getCall( 2 ).args[ 0 ].path.should.equal "#{__dirname}/support/foo.txt"
 
       done( )

@@ -21,7 +21,7 @@ exports.each = ( pattern, callback, done ) ->
 
   glob pattern, { }, ( error, files ) ->
 
-    callback file for file in files
+    callback new File( file ) for file in files
 
     done?( )
 

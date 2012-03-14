@@ -69,6 +69,10 @@ class File
 
   basename : -> path.basename @path, @extname( )
 
+  append : ( string ) -> @buffer = "#{@buffer}\n#{string}"
+
+  prepend : ( string ) -> @buffer = "#{string}\n#{@buffer}"
+
   read : -> @buffer = fs.readFileSync @path, 'utf-8'
 
   write : ( path=@path ) -> fs.writeFileSync path, @buffer, 'utf-8'

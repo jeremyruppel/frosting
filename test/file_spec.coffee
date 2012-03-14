@@ -40,6 +40,22 @@ describe 'File', ->
       file = new File __filename
       file.buffer.should.equal ''
 
+  describe 'append', ->
+
+    it 'should append a string to the buffer', ->
+      file = new File __filename
+      file.buffer = 'foo'
+      file.append 'bar'
+      file.buffer.should.equal "foo\nbar"
+
+  describe 'prepend', ->
+
+    it 'should prepend a string to the buffer', ->
+      file = new File __filename
+      file.buffer = 'foo'
+      file.prepend 'bar'
+      file.buffer.should.equal "bar\nfoo"
+
   describe 'read', ->
 
     it 'should return the contents of the file', ->

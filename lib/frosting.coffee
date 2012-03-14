@@ -1,4 +1,5 @@
 fs               = require 'fs'
+path             = require 'path'
 glob             = require 'glob'
 coffee           = require 'coffee-script'
 {uglify, parser} = require 'uglify-js'
@@ -45,6 +46,12 @@ class File
       true
     catch error
       false
+
+  filename : -> path.basename @path
+
+  extname : -> path.extname @path
+
+  basename : -> path.basename @path, @extname( )
 
   read : -> @buffer = fs.readFileSync @path, 'utf-8'
 

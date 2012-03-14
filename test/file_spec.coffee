@@ -16,6 +16,24 @@ describe 'File', ->
       file = new File 'foo'
       file.exists( ).should.be.false
 
+  describe 'filename', ->
+
+    it 'should return the correct filename', ->
+      file = new File __filename
+      file.filename( ).should.equal 'file_spec.coffee'
+
+  describe 'extname', ->
+
+    it 'should return the correct extname', ->
+      file = new File __filename
+      file.extname( ).should.equal '.coffee'
+
+  describe 'basename', ->
+
+    it 'should return the correct basename', ->
+      file = new File __filename
+      file.basename( ).should.equal 'file_spec'
+
   describe 'buffer', ->
 
     it 'should be blank initially', ->

@@ -1,5 +1,6 @@
-fs   = require 'fs'
-glob = require 'glob'
+fs     = require 'fs'
+glob   = require 'glob'
+coffee = require 'coffee-script'
 
 ###*
  * Shorter console.log
@@ -36,6 +37,7 @@ exports.touch = ( file ) ->
 class File
   constructor : ( @path ) ->
 
+  buffer : ''
   exists : ->
     try
       fs.statSync @path
@@ -43,6 +45,11 @@ class File
     catch error
       false
 
-  read : -> fs.readFileSync @path, 'utf-8'
+  read : -> @buffer = fs.readFileSync @path, 'utf-8'
+
+  compile : ( callback ) ->
+    @read( ) if @buffer is ''
+    @buffer = coffee.compile @buffer
+    callback( )
 
 exports.File = File

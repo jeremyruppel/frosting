@@ -11,7 +11,8 @@
   },
   "main": "./lib/frosting",
   "dependencies": {
-    "glob":"3.1.6"
+    "glob":"3.1.6",
+    "coffee-script":"1.2.0"
   },
   "devDependencies": {
     "mocha":"0.14.1",

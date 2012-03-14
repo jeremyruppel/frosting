@@ -33,6 +33,31 @@ describe 'File', ->
       file.read( )
       file.buffer.should.match /describe 'File'/
 
+  describe 'write', ->
+
+    it 'should create a new file if one does not exist', ->
+      file = new File "#{__dirname}/support/foo.txt"
+      file.exists( ).should.be.false
+      file.write( )
+      file.exists( ).should.be.true
+
+    it 'should write the buffer to the File path if no filename is given', ->
+      file = new File "#{__dirname}/support/foo.txt"
+      file.buffer = 'foo'
+      file.write( )
+      file.read( ).should.equal 'foo'
+
+    it 'should write the buffer to another path if a filename is given', ->
+      foo = new File "#{__dirname}/support/foo.txt"
+      foo.buffer = 'foo'
+      foo.write "#{__dirname}/support/bar.txt"
+
+      foo.exists( ).should.be.false
+
+      bar = new File "#{__dirname}/support/bar.txt"
+      bar.exists( ).should.be.true
+      bar.read( ).should.equal 'foo'
+
   describe 'compile', ->
 
     it 'should call read if the buffer is empty', ( done ) ->

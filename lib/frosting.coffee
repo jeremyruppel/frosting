@@ -48,6 +48,8 @@ class File
 
   read : -> @buffer = fs.readFileSync @path, 'utf-8'
 
+  write : ( path=@path ) -> fs.writeFileSync path, @buffer, 'utf-8'
+
   compile : ( callback ) ->
     @read( ) if @buffer is ''
 

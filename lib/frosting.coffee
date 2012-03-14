@@ -1,3 +1,4 @@
+fs   = require 'fs'
 glob = require 'glob'
 
 ###*
@@ -21,3 +22,8 @@ exports.each = ( pattern, callback, done ) ->
     callback file for file in files
 
     done?( )
+
+###*
+ *
+###
+exports.touch = ( file ) -> fs.writeFileSync file, '', 'utf-8'

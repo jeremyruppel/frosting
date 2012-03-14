@@ -2,12 +2,12 @@
   "author": "Jeremy Ruppel",
   "name": "frosting",
   "description": "Task helpers for Cakefiles",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "url": "https://github.com/jeremyruppel/frosting"
   },
   "engines": {
-    "node": "~v0.4.1"
+    "node": ">=0.4.1"
   },
   "main": "./lib/frosting",
   "dependencies": {

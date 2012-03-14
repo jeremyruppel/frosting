@@ -19,7 +19,7 @@ exports.glob = glob
  * filename matched in a glob, or for each
  * filename in an array of filenames
 ###
-exports.each = ( files, callback, done ) ->
+each = ( files, callback, done ) ->
 
   if typeof files is 'string'
     glob files, { }, ( error, files ) ->
@@ -28,6 +28,19 @@ exports.each = ( files, callback, done ) ->
   else
     callback new File( file ) for file in files
     done?( )
+
+exports.each = each
+
+###*
+ *
+###
+exports.concat = ( files, callback ) ->
+
+  file = new File( )
+  each files, ( f ) ->
+    file.buffer += f.read( ) + "\n"
+  , ->
+    callback file
 
 ###*
  *

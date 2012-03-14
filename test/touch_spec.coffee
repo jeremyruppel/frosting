@@ -18,3 +18,8 @@ describe 'touch', ->
     touch "#{__dirname}/support/foo.txt"
 
     fs.readFileSync( "#{__dirname}/support/foo.txt", 'utf-8' ).should.equal ''
+
+  it 'should return a File object for the created file', ->
+    file = touch "#{__dirname}/support/foo.txt"
+    file.should.be.a 'object'
+    file.path.should.equal "#{__dirname}/support/foo.txt"

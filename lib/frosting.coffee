@@ -26,12 +26,14 @@ exports.each = ( pattern, callback, done ) ->
 ###*
  *
 ###
-exports.touch = ( file ) -> fs.writeFileSync file, '', 'utf-8'
+exports.touch = ( file ) ->
+  fs.writeFileSync file, '', 'utf-8'
+  new File file
 
 ###*
  *
 ###
-class exports.File
+class File
   constructor : ( @path ) ->
 
   exists : ->
@@ -42,3 +44,5 @@ class exports.File
       false
 
   read : -> fs.readFileSync @path, 'utf-8'
+
+exports.File = File

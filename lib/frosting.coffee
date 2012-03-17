@@ -83,7 +83,7 @@ class File
 
     @buffer = coffee.compile @buffer
 
-    callback( )
+    callback @
 
   minify : ( callback ) ->
     @read( ) if @buffer is ''
@@ -94,6 +94,6 @@ class File
 
     @buffer = uglify.gen_code ast
 
-    callback( )
+    callback @
 
 exports.File = File

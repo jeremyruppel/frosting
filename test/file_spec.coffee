@@ -139,6 +139,12 @@ describe 'File', ->
         """
         done( )
 
+    it 'should yield itself to the block', ( done ) ->
+      file= new File __filename
+      file.compile ( foo ) ->
+        foo.should.equal file
+        done( )
+
   describe 'minify', ->
 
     it 'should call read if the buffer is empty', ( done ) ->
@@ -169,4 +175,11 @@ describe 'File', ->
 
       file.minify ->
         file.buffer.should.eql 'var foo="bar"'
+        done( )
+
+    it 'should yield itself to the block', ( done ) ->
+      file= new File __filename
+      file.buffer = 'var foo = "bar";'
+      file.minify ( foo ) ->
+        foo.should.equal file
         done( )

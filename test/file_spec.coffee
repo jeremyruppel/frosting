@@ -92,6 +92,11 @@ describe 'File', ->
       bar.exists( ).should.be.true
       bar.read( ).should.equal 'foo'
 
+    it 'should return itself', ->
+      foo = new File "#{__dirname}/support/foo.txt"
+      bar = foo.write( )
+      bar.should.equal foo
+
   describe 'compile', ->
 
     it 'should call read if the buffer is empty', ( done ) ->

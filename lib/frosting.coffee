@@ -96,4 +96,19 @@ class File
 
     callback( )
 
+  header : ( json, callback ) ->
+    fs.readFile json, 'utf-8', ( err, data ) =>
+      pkg = JSON.parse data
+      @prepend """
+      ###*
+       * #{pkg.name} #{pkg.version} / #{@basename( )}.js
+       * #{pkg.description}
+       * (c) #{new Date( ).getFullYear( )} #{pkg.author}
+       * Released under the #{pkg.license} license
+       * For all details and documentation:
+       * #{pkg.repository.url}
+      ###
+      """
+      callback( )
+
 exports.File = File

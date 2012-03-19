@@ -44,9 +44,7 @@ exports.concat = ( files, callback ) ->
 ###*
  *
 ###
-exports.touch = ( file ) ->
-  fs.writeFileSync file, '', 'utf-8'
-  new File file
+exports.touch = ( file ) -> new File( file ).write( )
 
 ###*
  *
@@ -76,14 +74,16 @@ class File
 
   read : -> @buffer = fs.readFileSync @path, 'utf-8'
 
-  write : ( path=@path ) -> fs.writeFileSync path, @buffer, 'utf-8'
+  write : ( path=@path ) ->
+    fs.writeFileSync path, @buffer, 'utf-8'
+    @
 
   compile : ( callback ) ->
     @read( ) if @buffer is ''
 
     @buffer = coffee.compile @buffer
 
-    callback( )
+    callback @
 
   minify : ( callback ) ->
     @read( ) if @buffer is ''
@@ -94,7 +94,7 @@ class File
 
     @buffer = uglify.gen_code ast
 
-    callback( )
+    callback @
 
   header : ( json, callback ) ->
     fs.readFile json, 'utf-8', ( err, data ) =>

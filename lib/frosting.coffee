@@ -15,6 +15,19 @@ exports.puts = -> console.log arguments...
 exports.glob = glob
 
 ###*
+ * `exec`, but with logging
+###
+exports.sh = ( command, callback ) ->
+
+  exec command, ( errors, stdout, stderr ) ->
+
+    console.log errors if error?
+    console.log stdout if stdout?
+    console.log stderr if stderr?
+
+    callback( errors, stdout, stderr ) if callback?
+
+###*
  * Sugar method to call a block for each
  * filename matched in a glob, or for each
  * filename in an array of filenames

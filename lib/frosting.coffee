@@ -28,6 +28,11 @@ exports.sh = ( command, callback ) ->
     callback( errors, stdout, stderr ) if callback?
 
 ###*
+ * Shorter `renameSync`
+###
+exports.mv = ( from, to ) -> fs.renameSync from, to
+
+###*
  * Sugar method to call a block for each
  * filename matched in a glob, or for each
  * filename in an array of filenames

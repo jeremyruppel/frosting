@@ -2,6 +2,7 @@ fs               = require 'fs'
 path             = require 'path'
 glob             = require 'glob'
 coffee           = require 'coffee-script'
+{exec}           = require 'child_process'
 {uglify, parser} = require 'uglify-js'
 
 ###*

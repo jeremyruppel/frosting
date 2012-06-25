@@ -72,6 +72,11 @@ exports.touch = ( file ) -> new File( file ).write( )
 ###*
  *
 ###
+exports.package = JSON.parse fs.readFileSync( 'package.json', 'utf8' )
+
+###*
+ *
+###
 class File
   constructor : ( @path ) ->
 
@@ -96,7 +101,8 @@ class File
     @buffer = if @buffer.length is 0 then string else "#{string}\n#{@buffer}"
 
   read : ->
-    @buffer = ejs.render fs.readFileSync( @path, 'utf-8' ), process : process
+    context = process : process, package : exports.package
+    @buffer = ejs.render fs.readFileSync( @path, 'utf-8' ), context
 
   write : ( path=@path ) ->
     fs.writeFileSync path, @buffer, 'utf-8'

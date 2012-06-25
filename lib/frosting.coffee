@@ -57,7 +57,10 @@ exports.concat = ( files, callback ) ->
 
   file = new File( )
   each files, ( f ) ->
-    file.append f.read( )
+    if f.exists( )
+      file.append f.read( )
+    else
+      file.append f.path
   , -> callback file
 
 ###*

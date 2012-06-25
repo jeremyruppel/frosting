@@ -35,3 +35,16 @@ describe 'concat', ->
       baz
       """
       done( )
+
+  it 'should concat arbitrary strings along with files', ( done ) ->
+    concat [
+      '`',
+      "#{__dirname}/support/foo.txt",
+      '`'
+    ], ( f ) ->
+      f.buffer.should.equal """
+      `
+      foo
+      `
+      """
+      done( )

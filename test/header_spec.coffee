@@ -25,10 +25,10 @@ describe 'header', ->
 
       foo.buffer.should.equal """
       ###*
-       * mymodule 0.2.5 / foo.js
+       * mymodule 0.2.5
        * Handy stuff for the internets
        * (c) 2012 Foo, inc. <support@foo.com>
-       * Released under the MIT license
+       * Released under the MIT license.
        * For all details and documentation:
        * https://github.com/foo/mymodule
       ###

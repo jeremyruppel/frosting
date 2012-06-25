@@ -131,10 +131,10 @@ class File
       pkg = JSON.parse data
       @prepend """
       ###*
-       * #{pkg.name} #{pkg.version} / #{@basename( )}.js
+       * #{pkg.name} #{pkg.version}
        * #{pkg.description}
        * (c) #{new Date( ).getFullYear( )} #{pkg.author}
-       * Released under the #{pkg.license} license
+       * Released under the #{pkg.license} license.
        * For all details and documentation:
        * #{pkg.repository.url}
       ###

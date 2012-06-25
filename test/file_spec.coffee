@@ -1,5 +1,6 @@
 {sinon} = require './spec_helper'
 {File}  = require '../lib/frosting'
+fs      = require 'fs'
 
 describe 'File', ->
 
@@ -66,6 +67,13 @@ describe 'File', ->
       file = new File __filename
       file.read( )
       file.buffer.should.match /describe 'File'/
+
+    it 'should pass the file contents through ejs', ->
+      process.env.WOOT = 'woot!'
+      fs.writeFileSync "#{__dirname}/support/foo.txt", '<%= process.env.WOOT %>', 'utf-8'
+      file = new File  "#{__dirname}/support/foo.txt"
+      file.read( )
+      file.buffer.should.match /woot!/
 
   describe 'write', ->
 

@@ -1,6 +1,7 @@
 fs               = require 'fs'
 path             = require 'path'
 glob             = require 'glob'
+ejs              = require 'ejs'
 coffee           = require 'coffee-script'
 {exec}           = require 'child_process'
 {uglify, parser} = require 'uglify-js'
@@ -94,7 +95,8 @@ class File
   prepend : ( string ) ->
     @buffer = if @buffer.length is 0 then string else "#{string}\n#{@buffer}"
 
-  read : -> @buffer = fs.readFileSync @path, 'utf-8'
+  read : ->
+    @buffer = ejs.render fs.readFileSync( @path, 'utf-8' ), process : process
 
   write : ( path=@path ) ->
     fs.writeFileSync path, @buffer, 'utf-8'

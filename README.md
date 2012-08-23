@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jeremyruppel/frosting.png)](http://travis-ci.org/jeremyruppel/frosting)
 Frosting
 ========
 
